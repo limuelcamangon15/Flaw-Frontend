@@ -18,13 +18,13 @@ export default function Navbar() {
 
       <div className="flex items-center gap-8">
         {NAV_LINKS.map((l) => (
-          <Link
+          <a
             key={l.label}
             href={l.href}
             className="hidden md:block text-sm font-medium text-white/40 hover:text-white transition-colors duration-200"
           >
             {l.label}
-          </Link>
+          </a>
         ))}
       </div>
 

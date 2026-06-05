@@ -139,7 +139,7 @@ export default function GrainGradientBg({
 }: GrainGradientBgProps) {
   return (
     <div
-      className={`relative min-h-screen w-full overflow-hidden ${className}`}
+      className={`relative min-h-full w-full ${className}`}
       style={{ backgroundColor: baseColor }}
     >
       {/* SVG grain filter definition */}
@@ -177,7 +177,7 @@ export default function GrainGradientBg({
         const animName = ANIM_NAMES[(animPhase ?? i) % 4];
 
         const style: CSSProperties = {
-          position: "absolute",
+          position: "fixed",
           borderRadius: "9999px",
           width: `${width}px`,
           height: `${height}px`,
@@ -196,7 +196,7 @@ export default function GrainGradientBg({
 
       {/* Grain overlay */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="fixed inset-0 pointer-events-none z-0"
         aria-hidden="true"
         style={{
           opacity: grainOpacity,
@@ -208,7 +208,7 @@ export default function GrainGradientBg({
       {/* Vignette */}
       {vignette && (
         <div
-          className="absolute inset-0 pointer-events-none"
+          className="fixed inset-0 pointer-events-none z-0"
           aria-hidden="true"
           style={{
             background:
