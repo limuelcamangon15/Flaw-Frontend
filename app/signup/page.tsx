@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Input from "../components/ui/input/Input";
 import PageLayout from "../components/ui/layout/PageLayout";
 import Image from "next/image";
 import Link from "next/link";
 import EmailInput from "../components/ui/input/EmailInput";
 import PasswordInput from "../components/ui/input/PasswordInput";
+import { Check, X } from "lucide-react";
 
 export default function Signup() {
   // data
@@ -16,12 +17,22 @@ export default function Signup() {
   const [password, setPassword] = useState<string>("");
 
   // ui
+  const [emailInteracted, setEmailInteracted] = useState(false);
+  const [passwordInteracted, setPasswordInteracted] = useState(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const isEmailValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
+    email
+  );
+  const isPasswordValid = password.length >= 8 && password.length <= 15;
+  const allowSubmit =
+    firstName.trim() !== "" &&
+    lastName.trim() !== "" &&
+    email.trim() !== "" &&
+    isPasswordValid;
 
   function handleSubmit() {
     alert(email + "  " + password);
   }
-
   return (
     <PageLayout>
       <div className="m-auto flex items-center justify-center min-h-screen p-6">
@@ -58,16 +69,68 @@ export default function Signup() {
               placeholder="Your Last Name"
             />
 
-            <EmailInput onChange={setEmail} />
+            <EmailInput
+              onChange={(value) => {
+                setEmail(value);
+
+                if (!emailInteracted) {
+                  setEmailInteracted(true);
+                }
+              }}
+            />
+            <span className="-mt-4 flex gap-1">
+              {!isEmailValid && emailInteracted && (
+                <>
+                  <X className="text-red-800" size={15} />
+
+                  <p
+                    className={`${
+                      isPasswordValid ? "text-green-500" : "text-red-800"
+                    } text-xs`}
+                  >
+                    Invalid Email
+                  </p>
+                </>
+              )}
+            </span>
 
             <PasswordInput
-              onChange={setPassword}
+              onChange={(value) => {
+                setPassword(value);
+
+                if (!passwordInteracted) {
+                  setPasswordInteracted(true);
+                }
+              }}
               showPassword={showPassword}
               setShowPassword={setShowPassword}
             />
 
+            {/* Password Validation Hint */}
+            {passwordInteracted && (
+              <span className="-mt-4 flex gap-1">
+                {isPasswordValid ? (
+                  <Check
+                    className={`${
+                      isPasswordValid ? "text-green-500" : "text-red-800"
+                    } `}
+                    size={15}
+                  />
+                ) : (
+                  <X className="text-red-800" size={15} />
+                )}
+                <p
+                  className={`${
+                    isPasswordValid ? "text-green-500" : "text-red-800"
+                  } text-xs`}
+                >
+                  8-15 characters
+                </p>
+              </span>
+            )}
+
             {/* Submit */}
-            {password.trim() !== "" && email.trim() !== "" ? (
+            {allowSubmit ? (
               <button
                 onClick={handleSubmit}
                 type="submit"
