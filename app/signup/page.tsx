@@ -88,7 +88,7 @@ export default function Signup() {
           <p className="text-center font-sans text-sm text-white/30">
             Already have an account?{" "}
             <Link
-              href="/signup"
+              href="/login"
               className="text-orange-400/80 hover:text-orange-400 transition-colors font-medium"
             >
               Log in to your workspace
