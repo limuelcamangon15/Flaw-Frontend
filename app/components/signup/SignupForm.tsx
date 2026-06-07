@@ -7,6 +7,7 @@ import Input from "../ui/input/Input";
 import EmailInput from "../ui/input/EmailInput";
 import PasswordInput from "../ui/input/PasswordInput";
 import { Check, X } from "lucide-react";
+import PageLayout from "../ui/layout/PageLayout";
 
 export default function SignupForm() {
   // data
@@ -33,129 +34,131 @@ export default function SignupForm() {
     alert(email + "  " + password);
   }
   return (
-    <div className="m-auto flex items-center justify-center min-h-screen p-6">
-      <div className="w-full max-w-sm flex flex-col gap-8">
-        {/* Logo */}
-        <div className="flex flex-col items-center gap-3">
-          <Image src="/flaw-logo.svg" alt="Flaw" width={44} height={44} />
-          <h1 className="font-heading font-black text-white text-3xl tracking-tighter">
-            FLAW
-          </h1>
+    <PageLayout>
+      <div className="m-auto flex items-center justify-center min-h-screen p-6">
+        <div className="w-full max-w-sm flex flex-col gap-8">
+          {/* Logo */}
+          <div className="flex flex-col items-center gap-3">
+            <Image src="/flaw-logo.svg" alt="Flaw" width={44} height={44} />
+            <h1 className="font-heading font-black text-white text-3xl tracking-tighter">
+              FLAW
+            </h1>
 
-          <p className="font-sans text-white/40 text-sm">
-            Sign up and experience seamless AI-powered bug tracking
-          </p>
-        </div>
+            <p className="font-sans text-white/40 text-sm">
+              Sign up and experience seamless AI-powered bug tracking
+            </p>
+          </div>
 
-        {/* Card */}
-        <div className="flex flex-col gap-5 rounded-2xl p-6 bg-white/5 border border-white/10 backdrop-blur-xl">
-          <Input
-            label="First Name"
-            onChange={setFirstName}
-            htmlFor="firstName"
-            id="firstName"
-            name="firstName"
-            placeholder="Your First Name"
-          />
+          {/* Card */}
+          <div className="flex flex-col gap-5 rounded-2xl p-6 bg-white/5 border border-white/10 backdrop-blur-xl">
+            <Input
+              label="First Name"
+              onChange={setFirstName}
+              htmlFor="firstName"
+              id="firstName"
+              name="firstName"
+              placeholder="Your First Name"
+            />
 
-          <Input
-            label="Last Name"
-            onChange={setLastName}
-            htmlFor="lastName"
-            id="lastName"
-            name="lastName"
-            placeholder="Your Last Name"
-          />
+            <Input
+              label="Last Name"
+              onChange={setLastName}
+              htmlFor="lastName"
+              id="lastName"
+              name="lastName"
+              placeholder="Your Last Name"
+            />
 
-          <EmailInput
-            onChange={(value) => {
-              setEmail(value);
+            <EmailInput
+              onChange={(value) => {
+                setEmail(value);
 
-              if (!emailInteracted) {
-                setEmailInteracted(true);
-              }
-            }}
-          />
-          <span className="-mt-4 flex gap-1">
-            {!isEmailValid && emailInteracted && (
-              <>
-                <X className="text-red-800" size={15} />
+                if (!emailInteracted) {
+                  setEmailInteracted(true);
+                }
+              }}
+            />
+            <span className="-mt-4 flex gap-1">
+              {!isEmailValid && emailInteracted && (
+                <>
+                  <X className="text-red-800" size={15} />
 
+                  <p
+                    className={`${
+                      isPasswordValid ? "text-green-500" : "text-red-800"
+                    } text-xs`}
+                  >
+                    Invalid Email
+                  </p>
+                </>
+              )}
+            </span>
+
+            <PasswordInput
+              onChange={(value) => {
+                setPassword(value);
+
+                if (!passwordInteracted) {
+                  setPasswordInteracted(true);
+                }
+              }}
+              showPassword={showPassword}
+              setShowPassword={setShowPassword}
+            />
+
+            {/* Password Validation Hint */}
+            {passwordInteracted && (
+              <span className="-mt-4 flex gap-1">
+                {isPasswordValid ? (
+                  <Check
+                    className={`${
+                      isPasswordValid ? "text-green-500" : "text-red-800"
+                    } `}
+                    size={15}
+                  />
+                ) : (
+                  <X className="text-red-800" size={15} />
+                )}
                 <p
                   className={`${
                     isPasswordValid ? "text-green-500" : "text-red-800"
                   } text-xs`}
                 >
-                  Invalid Email
+                  8-15 characters
                 </p>
-              </>
+              </span>
             )}
-          </span>
 
-          <PasswordInput
-            onChange={(value) => {
-              setPassword(value);
-
-              if (!passwordInteracted) {
-                setPasswordInteracted(true);
-              }
-            }}
-            showPassword={showPassword}
-            setShowPassword={setShowPassword}
-          />
-
-          {/* Password Validation Hint */}
-          {passwordInteracted && (
-            <span className="-mt-4 flex gap-1">
-              {isPasswordValid ? (
-                <Check
-                  className={`${
-                    isPasswordValid ? "text-green-500" : "text-red-800"
-                  } `}
-                  size={15}
-                />
-              ) : (
-                <X className="text-red-800" size={15} />
-              )}
-              <p
-                className={`${
-                  isPasswordValid ? "text-green-500" : "text-red-800"
-                } text-xs`}
+            {/* Submit */}
+            {allowSubmit ? (
+              <button
+                onClick={handleSubmit}
+                type="submit"
+                className="cursor-pointer mt-1 w-full rounded-xl bg-linear-to-r from-red-600 to-orange-500 py-3 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:scale-103 active:scale-80"
               >
-                8-15 characters
-              </p>
-            </span>
-          )}
+                Sign up
+              </button>
+            ) : (
+              <button
+                type="submit"
+                className="mt-1 w-full rounded-xl bg-linear-to-r from-red-600 to-orange-500 py-3 text-sm font-semibold text-white shadow-md opacity-50"
+              >
+                Sign up
+              </button>
+            )}
+          </div>
 
-          {/* Submit */}
-          {allowSubmit ? (
-            <button
-              onClick={handleSubmit}
-              type="submit"
-              className="cursor-pointer mt-1 w-full rounded-xl bg-linear-to-r from-red-600 to-orange-500 py-3 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:scale-103 active:scale-80"
+          <p className="text-center font-sans text-sm text-white/30">
+            Already have an account?{" "}
+            <Link
+              href="/login"
+              className="text-orange-400/80 hover:text-orange-400 transition-colors font-medium"
             >
-              Sign up
-            </button>
-          ) : (
-            <button
-              type="submit"
-              className="mt-1 w-full rounded-xl bg-linear-to-r from-red-600 to-orange-500 py-3 text-sm font-semibold text-white shadow-md opacity-50"
-            >
-              Sign up
-            </button>
-          )}
+              Log in to your workspace
+            </Link>
+          </p>
         </div>
-
-        <p className="text-center font-sans text-sm text-white/30">
-          Already have an account?{" "}
-          <Link
-            href="/login"
-            className="text-orange-400/80 hover:text-orange-400 transition-colors font-medium"
-          >
-            Log in to your workspace
-          </Link>
-        </p>
       </div>
-    </div>
+    </PageLayout>
   );
 }
