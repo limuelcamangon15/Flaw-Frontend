@@ -24,7 +24,7 @@ export default function Signup() {
 
   return (
     <PageLayout>
-      <div className="m-auto flex items-center justify-center min-h-screen px-6 py-24">
+      <div className="m-auto flex items-center justify-center min-h-screen p-6">
         <div className="w-full max-w-sm flex flex-col gap-8">
           {/* Logo */}
           <div className="flex flex-col items-center gap-3">
@@ -32,6 +32,7 @@ export default function Signup() {
             <h1 className="font-heading font-black text-white text-3xl tracking-tighter">
               FLAW
             </h1>
+
             <p className="font-sans text-white/40 text-sm">
               Sign up and experience seamless AI-powered bug tracking
             </p>
