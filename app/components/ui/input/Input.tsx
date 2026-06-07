@@ -2,7 +2,6 @@ interface InputProps {
   onChange: (value: string) => void;
   label: string;
   htmlFor: string;
-  type: string;
   id: string;
   name: string;
   placeholder: string;
@@ -12,7 +11,6 @@ export default function Input({
   onChange,
   label,
   htmlFor,
-  type,
   id,
   name,
   placeholder,
@@ -28,7 +26,7 @@ export default function Input({
 
       <input
         onChange={(e) => onChange(e.currentTarget.value)}
-        type={type}
+        type="text"
         id={id}
         name={name}
         placeholder={placeholder}

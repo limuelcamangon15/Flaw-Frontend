@@ -32,7 +32,7 @@ export default function PasswordInput({
           id="password"
           name="password"
           placeholder="••••••••"
-          className="w-full rounded-xl bg-white/6 border border-white/10 px-4 py-3 pr-16 text-sm text-white placeholder-white/20 outline-none transition-all duration-200 font-sans tracking-wide focus:border-red-600/60 focus:ring-2 focus:ring-red-600/10"
+          className="tracking-wider w-full rounded-xl bg-white/6 border border-white/10 px-4 py-3 pr-16 text-sm text-white placeholder-white/20 outline-none transition-all duration-200 font-sans focus:border-red-600/60 focus:ring-2 focus:ring-red-600/10"
         />
         <button
           type="button"
