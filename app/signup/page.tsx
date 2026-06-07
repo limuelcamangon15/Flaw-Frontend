@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Input from "../components/ui/input/Input";
 import PageLayout from "../components/ui/layout/PageLayout";
 import Image from "next/image";
