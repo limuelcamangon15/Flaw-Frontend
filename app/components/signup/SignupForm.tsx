@@ -11,7 +11,7 @@ import RolePicker from "./RolePicker";
 
 export default function SignupForm() {
   // data
-  const [role, setRole] = useState<string>("QA");
+  const [role, setRole] = useState<"QA" | "DEVELOPER">("QA");
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -28,6 +28,7 @@ export default function SignupForm() {
   const allowSubmit =
     firstName.trim() !== "" &&
     lastName.trim() !== "" &&
+    role.trim() !== "" &&
     email.trim() !== "" &&
     isPasswordValid;
 
@@ -39,7 +40,7 @@ export default function SignupForm() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ firstName, lastName, email, password }),
+      body: JSON.stringify({ firstName, lastName, role, email, password }),
     });
 
     const data = await response.json();
