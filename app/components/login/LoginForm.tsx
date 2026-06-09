@@ -17,7 +17,7 @@ export default function LoginForm() {
   const router = useRouter();
 
   function handleSubmit() {
-    router.push("/home");
+    router.push("/dashboard");
   }
 
   return (
