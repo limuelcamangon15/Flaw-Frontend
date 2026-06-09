@@ -5,15 +5,19 @@ import Image from "next/image";
 import Link from "next/link";
 import EmailInput from "../ui/input/EmailInput";
 import PasswordInput from "../ui/input/PasswordInput";
-import PageLayout from "../ui/layout/PageLayout";
+import { useRouter } from "next/router";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
+  const isFilled = password.trim() !== "" && email.trim() !== "";
+
+  const router = useRouter();
+
   function handleSubmit() {
-    alert(email + "  " + password);
+    router.push("/home");
   }
 
   return (
@@ -43,7 +47,7 @@ export default function LoginForm() {
           />
 
           {/* Submit */}
-          {password.trim() !== "" && email.trim() !== "" ? (
+          {isFilled ? (
             <button
               onClick={handleSubmit}
               type="submit"
