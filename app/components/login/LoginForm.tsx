@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import EmailInput from "../ui/input/EmailInput";
 import PasswordInput from "../ui/input/PasswordInput";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
