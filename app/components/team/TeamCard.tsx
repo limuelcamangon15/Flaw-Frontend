@@ -26,7 +26,9 @@ export default function TeamCard({ id, teamName, members }: TeamCardProps) {
 
       <div className="mt-4 flex items-center gap-2 text-sm text-neutral-400">
         <Users size={16} />
-        <span>{members} members</span>
+        <span>
+          {members} {members <= 1 ? "member" : "members"}
+        </span>
       </div>
     </div>
   );
