@@ -1,19 +1,20 @@
 "use client";
 
-import { Plus, PlusIcon, UserPlus } from "lucide-react";
+import { Plus } from "lucide-react";
 import TeamCard from "./TeamCard";
 import SmallButton from "../ui/button/SmallButton";
 
 const TEAMS = [
   { id: 1, teamName: "Flaw Team", members: 2 },
-  { id: 1, teamName: "HagonoyTides Team", members: 1 },
-  { id: 1, teamName: "iLabCICT Team", members: 5 },
-  { id: 1, teamName: "Flaw Team", members: 2 },
-  { id: 1, teamName: "HagonoyTides Team", members: 1 },
-  { id: 1, teamName: "iLabCICT Team", members: 5 },
-  { id: 1, teamName: "Flaw Team", members: 2 },
-  { id: 1, teamName: "HagonoyTides Team", members: 1 },
-  { id: 1, teamName: "iLabCICT Team", members: 5 },
+  { id: 2, teamName: "Hagonoy Tides", members: 1 },
+  { id: 3, teamName: "iLab CICT", members: 5 },
+  { id: 4, teamName: "SmartAgri Innovators", members: 4 },
+  { id: 5, teamName: "HealthSync", members: 3 },
+  { id: 6, teamName: "EduTrack", members: 6 },
+  { id: 7, teamName: "GreenTech Solutions", members: 5 },
+  { id: 8, teamName: "Barangay Connect", members: 4 },
+  { id: 9, teamName: "CodeCrafters", members: 2 },
+  { id: 10, teamName: "DataVision", members: 3 },
 ];
 
 export default function TeamPage() {
@@ -28,6 +29,7 @@ export default function TeamPage() {
       <div className="w-full flex justify-end">
         <SmallButton
           label="New Team"
+          color="green"
           onClick={() => {}}
           icon={<Plus size={15} />}
         />
