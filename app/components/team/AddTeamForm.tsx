@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronLeft, Plus, Users } from "lucide-react";
+import { ChevronLeft, Plus, Users, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import Input from "../ui/input/Input";
 import { useState } from "react";
@@ -17,6 +17,10 @@ export default function AddTeamForm({
   setShowAddForm,
 }: AddTeamFormProps) {
   const [teamName, setTeamName] = useState<string>("");
+  const [isTeamNameInteracted, setIsTeamNameInteracted] =
+    useState<boolean>(false);
+
+  const isValid = teamName.trim() !== "";
 
   async function handleCreate() {
     sileo.success({
@@ -71,9 +75,18 @@ export default function AddTeamForm({
                 htmlFor="teamName"
                 id="teamName"
                 name="teamName"
-                onChange={setTeamName}
+                onChange={(value) => {
+                  setTeamName(value);
+                  setIsTeamNameInteracted(true);
+                }}
                 placeholder="eg. HagonoyTides, Team Concurrent"
               />
+              {/* Error Message */}
+              <span className="-mt-6 flex gap-1">
+                {!isValid && isTeamNameInteracted && (
+                  <p className="text-red-600 text-xs">Team Name is required.</p>
+                )}
+              </span>
 
               <Button
                 label="Create Team"
@@ -86,6 +99,7 @@ export default function AddTeamForm({
                 }
                 onClick={handleCreate}
                 width="w-full"
+                disabled={!isValid}
               />
             </section>
           </motion.div>

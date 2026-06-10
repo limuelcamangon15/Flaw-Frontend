@@ -6,6 +6,7 @@ interface ButtonProps {
   icon: React.ReactNode;
   color: "green" | "red" | "gray" | "blue";
   width?: string;
+  disabled?: boolean;
 }
 
 const COLORS = {
@@ -21,15 +22,22 @@ export default function Button({
   icon,
   color,
   width = "w-fit",
+  disabled,
 }: ButtonProps) {
   return (
     <button
-      onClick={onClick}
-      className={`font-sans cursor-pointer px-4 py-3 rounded-xl 
+      onClick={disabled ? () => {} : onClick}
+      className={`${
+        disabled
+          ? "opacity-40 cursor-default"
+          : "hover:scale-103 active:scale-80 cursor-pointer"
+      } 
+                font-sans px-4 py-3 rounded-xl 
                 flex items-center justify-center gap-2
                 bg-linear-to-r ${COLORS[color]} ${width}
                 text-sm font-semibold text-white shadow-lg 
-                transition-all duration-300 hover:scale-103 active:scale-80`}
+                transition-all duration-300`}
+      disabled={disabled}
     >
       {icon}
       {label}
