@@ -2,7 +2,9 @@
 
 import { Plus } from "lucide-react";
 import TeamCard from "./TeamCard";
-import SmallButton from "../ui/button/SmallButton";
+import Button from "../ui/button/Button";
+import AddTeamForm from "./AddTeamForm";
+import { useState } from "react";
 
 const TEAMS = [
   { id: 1, teamName: "Flaw Team", members: 2 },
@@ -18,6 +20,8 @@ const TEAMS = [
 ];
 
 export default function TeamPage() {
+  const [showAddForm, setShowAddForm] = useState<boolean>(false);
+
   return (
     <div className="w-full pt-20 p-5">
       <h1 className="font-heading text-3xl">Teams & Workspaces</h1>
@@ -27,10 +31,10 @@ export default function TeamPage() {
       </p>
 
       <div className="w-full flex justify-end">
-        <SmallButton
+        <Button
           label="New Team"
           color="green"
-          onClick={() => {}}
+          onClick={() => setShowAddForm(true)}
           icon={<Plus size={15} />}
         />
       </div>
@@ -40,6 +44,8 @@ export default function TeamPage() {
           <TeamCard {...team} key={index} />
         ))}
       </div>
+
+      <AddTeamForm showAddForm={showAddForm} setShowAddForm={setShowAddForm} />
     </div>
   );
 }

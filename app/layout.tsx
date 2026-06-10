@@ -77,7 +77,12 @@ export default function RootLayout({
           ]}
         >
           <div className="z-50">
-            <Toaster position="top-center" />
+            <Toaster
+              options={{
+                fill: "#262626",
+              }}
+              position="top-center"
+            />
           </div>
 
           {children}
