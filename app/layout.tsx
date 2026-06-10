@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Unbounded } from "next/font/google";
 import "./globals.css";
 import GrainGradientBg from "./components/ui/bg/GrainGradientBg";
+import { Toaster } from "sileo";
 
 const unbounded = Unbounded({
   variable: "--font-unbounded",
@@ -75,6 +76,10 @@ export default function RootLayout({
             },
           ]}
         >
+          <div className="z-50">
+            <Toaster position="top-center" />
+          </div>
+
           {children}
         </GrainGradientBg>
       </body>

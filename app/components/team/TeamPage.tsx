@@ -1,6 +1,8 @@
-import { ChevronRight, Users } from "lucide-react";
-import AppNavbar from "../ui/app-navbar/AppNavbar";
+"use client";
+
+import { Plus, PlusIcon, UserPlus } from "lucide-react";
 import TeamCard from "./TeamCard";
+import SmallButton from "../ui/button/SmallButton";
 
 const TEAMS = [
   { id: 1, teamName: "Flaw Team", members: 2 },
@@ -22,6 +24,14 @@ export default function TeamPage() {
         Organize development teams, track bugs, and keep every project moving
         forward.
       </p>
+
+      <div className="w-full flex justify-end">
+        <SmallButton
+          label="New Team"
+          onClick={() => {}}
+          icon={<Plus size={15} />}
+        />
+      </div>
 
       <div className="h-fit w-full p-5 flex flex-row flex-wrap gap-3.5 items-center">
         {TEAMS.map((team, index) => (

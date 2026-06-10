@@ -6,6 +6,7 @@ import Link from "next/link";
 import EmailInput from "../ui/input/EmailInput";
 import PasswordInput from "../ui/input/PasswordInput";
 import { useRouter } from "next/navigation";
+import { sileo } from "sileo";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
@@ -18,6 +19,7 @@ export default function LoginForm() {
 
   function handleSubmit() {
     router.push("/dashboard");
+    sileo.success({ title: "Welcome Back!" });
   }
 
   return (

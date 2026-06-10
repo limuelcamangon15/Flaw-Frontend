@@ -17,7 +17,7 @@ export default function AppNavbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed top-0 w-full z-50 flex items-center justify-between p-5 shadow-2xl backdrop-blur-sm transition-all duration-500 bg-black/50">
+    <nav className="fixed top-0 w-full z-40 flex items-center justify-between p-5 shadow-2xl backdrop-blur-sm transition-all duration-500 bg-black/50">
       <div className="flex w-full justify-end gap-8">
         {NAV_LINKS.map((l) => {
           const isActive = pathname === l.href;
