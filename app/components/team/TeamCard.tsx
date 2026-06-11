@@ -1,6 +1,6 @@
 "use client";
 
-import { slugify } from "@/app/utils/routingUtils";
+import { slugify } from "@/app/utils/utils";
 import { ChevronRight, Users } from "lucide-react";
 import { useRouter } from "next/navigation";
 
