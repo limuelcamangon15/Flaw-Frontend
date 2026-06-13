@@ -1,9 +1,11 @@
 "use client";
 
 import { getInitials } from "@/app/utils/utils";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, Send } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import CommentCard from "./CommentCard";
+import Input from "../ui/input/Input";
+import { useState } from "react";
 
 interface BugDetailsProps {
   id: number;
@@ -25,6 +27,8 @@ export default function BugDetails({
   showBugDetails,
   setShowBugDetails,
 }: BugDetailsProps) {
+  const [newComment, setNewComment] = useState<string>("");
+
   return (
     <AnimatePresence>
       {showBugDetails && (
@@ -35,7 +39,7 @@ export default function BugDetails({
           exit={{ opacity: 0 }}
         >
           <motion.div
-            className="absolute top-0 right-0 h-full w-full md:w-[60%] bg-neutral-900 px-10 pt-20 p-5"
+            className="absolute top-0 right-0 h-full w-full md:w-[60%] bg-neutral-900 px-10 pt-20 p-5 flex flex-col"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
@@ -49,7 +53,6 @@ export default function BugDetails({
                 onClick={() => setShowBugDetails(false)}
               />
             </div>
-
             {/* Bug Reference Details*/}
             <div
               className="w-full md:w-full min-h-30 font-sans
@@ -91,12 +94,44 @@ export default function BugDetails({
                 </div>
               </div>
             </div>
-
             {/* Bug Comments */}
-            <div className="mt-6 flex flex-col gap-3">
+            <div className="mt-6 p-2 flex flex-col flex-1 overflow-y-auto gap-3">
               <CommentCard role="QA" />
               <CommentCard role="DEVELOPER" />
               <CommentCard role="QA" />
+              <CommentCard role="QA" />
+              <CommentCard role="DEVELOPER" />
+              <CommentCard role="QA" />
+              <CommentCard role="QA" />
+              <CommentCard role="DEVELOPER" />
+              <CommentCard role="QA" />
+            </div>
+
+            {/* Comment Input Field*/}
+            <div className="relative bottom-0 w-full md:w-[90%] flex items-center gap-2">
+              <div className="w-full">
+                <Input
+                  label=""
+                  htmlFor="comment"
+                  id="comment"
+                  name="comment"
+                  onChange={setNewComment}
+                  placeholder="Type your thoughts about the bug here..."
+                />
+              </div>
+
+              {/* Send button */}
+              <button
+                type="submit"
+                className="flex items-center justify-center cursor-pointer
+                 w-12 h-11 mt-1
+                 rounded-full bg-linear-to-tr from-amber-800 to-amber-400 
+                 text-white 
+                 hover:scale-105 active:scale-85
+                 transition-all duration-300"
+              >
+                <Send size={24} />
+              </button>
             </div>
           </motion.div>
         </motion.div>
