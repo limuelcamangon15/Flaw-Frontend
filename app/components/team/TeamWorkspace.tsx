@@ -15,6 +15,8 @@ export default function TeamWorkspace() {
         <BugCard />
         <BugCard />
         <BugCard />
+        <BugCard />
+        <BugCard />
       </div>
 
       <BugDetails
