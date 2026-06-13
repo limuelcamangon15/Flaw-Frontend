@@ -1,9 +1,36 @@
-import { getInitials } from "@/app/utils/utils";
+"use client";
 
-export default function BugCard() {
+import { Bug } from "@/app/types/bug";
+import { getInitials } from "@/app/utils/utils";
+import { Dispatch, SetStateAction } from "react";
+
+interface BugCardProps extends Bug {
+  setShowBugDetails: Dispatch<SetStateAction<boolean>>;
+  setDisplayedBugDetails: Dispatch<SetStateAction<Bug>>;
+}
+
+export default function BugCard({
+  id,
+  reportedBy,
+  content,
+  type,
+  createdAt,
+  setShowBugDetails,
+  setDisplayedBugDetails,
+}: BugCardProps) {
   return (
     <div
-      className="w-full md:w-[85%] max-h-40 min-h-30 font-sans
+      onClick={() => {
+        setShowBugDetails(true);
+        setDisplayedBugDetails({
+          id,
+          reportedBy,
+          content,
+          type,
+          createdAt,
+        });
+      }}
+      className="w-full md:w-[85%] min-h-30 font-sans
                 relative group overflow-hidden cursor-pointer rounded-2xl 
                 border border-neutral-800 bg-neutral-900 p-4 
                 transition-all duration-300 hover:bg-neutral-900/75 hover:border-amber-500/30 hover:-translate-y-1 active:scale-90"
@@ -16,26 +43,28 @@ export default function BugCard() {
             </div>
 
             <div>
-              <h3 className="font-semibold text-neutral-100">
-                Limuel Camangon
-              </h3>
+              <h3 className="font-semibold text-neutral-100">{reportedBy}</h3>
               <p className="text-xs text-neutral-500">Reporter | QA</p>
             </div>
           </div>
 
           <p className="text-sm leading-relaxed text-neutral-400 line-clamp-3">
-            Lorem, ipasda das das das dasdaLorem, ipasda das das das
-            dasdasdsasdasdad asd asdasd a a sdsasdasdad asd asdasd a adadaemo,
-            provident et autem nostrum incidunt.
+            {content}
           </p>
         </div>
 
         <div className="mt-3 flex items-center justify-between">
-          <span className="rounded-full bg-neutral-800 px-2.5 py-1 text-xs text-amber-400">
-            Front-end
+          <span
+            className={`rounded-full border px-2.5 py-1 text-xs ${
+              type === "Front-end"
+                ? " text-amber-400 bg-amber-950/50 border-amber-400/10"
+                : "text-indigo-500 bg-indigo-950/50 border-indigo-500/10"
+            }`}
+          >
+            {type}
           </span>
 
-          <p className="text-xs text-neutral-500">May 15, 2005 · 11:10 AM</p>
+          <p className="text-xs text-neutral-500">{createdAt}</p>
         </div>
       </div>
     </div>

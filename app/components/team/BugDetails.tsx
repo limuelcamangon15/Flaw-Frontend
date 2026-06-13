@@ -1,14 +1,26 @@
 "use client";
 
+import { getInitials } from "@/app/utils/utils";
 import { ChevronLeft } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 
 interface BugDetailsProps {
+  id: number;
+  reportedBy: string;
+  content: string;
+  type: "Front-end" | "Back-end" | string;
+  createdAt: string;
+
   showBugDetails: boolean;
   setShowBugDetails: (value: boolean) => void;
 }
 
 export default function BugDetails({
+  id,
+  reportedBy,
+  content,
+  type,
+  createdAt,
   showBugDetails,
   setShowBugDetails,
 }: BugDetailsProps) {
@@ -37,11 +49,47 @@ export default function BugDetails({
               />
             </div>
 
-            <h1 className="font-heading text-3xl">Add New Team</h1>
-            <p className="font-sans text-white/50 max-w-2xl mb-6">
-              Create a new workspace for your team, invite members, and start
-              collaborating on projects, tasks, and bug tracking in one place.
-            </p>
+            <div
+              className="w-full md:w-full min-h-30 font-sans
+                           relative group overflow-hidden cursor-pointer rounded-2xl 
+                           border border-neutral-800 bg-neutral-900 p-4 
+                           "
+            >
+              <div className="flex h-full flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="h-10 w-10 rounded-full bg-linear-to-br from-amber-400 to-orange-500 flex items-center justify-center text-sm font-bold text-black">
+                      {getInitials("Limuel Camangon")}
+                    </div>
+
+                    <div>
+                      <h3 className="font-semibold text-neutral-100">
+                        {reportedBy}
+                      </h3>
+                      <p className="text-xs text-neutral-500">Reporter | QA</p>
+                    </div>
+                  </div>
+
+                  <p className="text-sm leading-relaxed text-neutral-400 line-clamp-3">
+                    {content}
+                  </p>
+                </div>
+
+                <div className="mt-3 flex items-center justify-between">
+                  <span
+                    className={`rounded-full border px-2.5 py-1 text-xs ${
+                      type === "Front-end"
+                        ? " text-amber-400 bg-amber-950/50 border-amber-400/10"
+                        : "text-indigo-500 bg-indigo-950/50 border-indigo-500/10"
+                    }`}
+                  >
+                    {type}
+                  </span>
+
+                  <p className="text-xs text-neutral-500">{createdAt}</p>
+                </div>
+              </div>
+            </div>
           </motion.div>
         </motion.div>
       )}
