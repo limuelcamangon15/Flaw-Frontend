@@ -39,7 +39,7 @@ export default function BugCard({
         <div>
           <div className="flex items-center gap-3 mb-2">
             <div className="h-10 w-10 rounded-full bg-linear-to-br from-amber-400 to-orange-500 flex items-center justify-center text-sm font-bold text-black">
-              {getInitials("Limuel Camangon")}
+              {getInitials(reportedBy)}
             </div>
 
             <div>

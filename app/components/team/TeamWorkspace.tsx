@@ -91,6 +91,9 @@ export default function TeamWorkspace() {
   return (
     <div className="w-full h-full pt-20 p-5">
       <h1 className="font-heading text-3xl">Concurrent Team</h1>
+      <p className="font-sans text-white/50 max-w-2xl mb-6">
+        Bugs submitted by QA for investigation and resolution.
+      </p>
 
       <div className="w-full flex flex-col items-center gap-3 mt-5">
         {bugs.map((b, index) => (

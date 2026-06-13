@@ -3,6 +3,7 @@
 import { getInitials } from "@/app/utils/utils";
 import { ChevronLeft } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
+import CommentCard from "./CommentCard";
 
 interface BugDetailsProps {
   id: number;
@@ -49,17 +50,17 @@ export default function BugDetails({
               />
             </div>
 
+            {/* Bug Reference Details*/}
             <div
               className="w-full md:w-full min-h-30 font-sans
-                           relative group overflow-hidden cursor-pointer rounded-2xl 
-                           border border-neutral-800 bg-neutral-900 p-4 
-                           "
+                           relative group overflow-hidden rounded-2xl 
+                           border border-neutral-800 bg-neutral-900 p-4 "
             >
               <div className="flex h-full flex-col justify-between">
                 <div>
                   <div className="flex items-center gap-3 mb-2">
                     <div className="h-10 w-10 rounded-full bg-linear-to-br from-amber-400 to-orange-500 flex items-center justify-center text-sm font-bold text-black">
-                      {getInitials("Limuel Camangon")}
+                      {getInitials(reportedBy)}
                     </div>
 
                     <div>
@@ -89,6 +90,13 @@ export default function BugDetails({
                   <p className="text-xs text-neutral-500">{createdAt}</p>
                 </div>
               </div>
+            </div>
+
+            {/* Bug Comments */}
+            <div className="mt-6 flex flex-col gap-3">
+              <CommentCard role="QA" />
+              <CommentCard role="DEVELOPER" />
+              <CommentCard role="QA" />
             </div>
           </motion.div>
         </motion.div>
