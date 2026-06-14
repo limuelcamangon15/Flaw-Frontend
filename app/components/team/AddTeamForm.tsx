@@ -3,13 +3,13 @@
 import { ChevronLeft, Plus, Users, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import Input from "../ui/input/Input";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Button from "../ui/button/Button";
 import { sileo } from "sileo";
 
 interface AddTeamFormProps {
   showAddForm: boolean;
-  setShowAddForm: (value: boolean) => void;
+  setShowAddForm: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function AddTeamForm({
@@ -37,6 +37,17 @@ export default function AddTeamForm({
 
     setShowAddForm(false);
   }
+
+  useEffect(() => {
+    if (!showAddForm) return;
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [showAddForm]);
 
   return (
     <AnimatePresence>
