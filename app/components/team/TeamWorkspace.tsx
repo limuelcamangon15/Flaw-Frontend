@@ -3,8 +3,12 @@
 import { useState } from "react";
 import BugCard from "./BugCard";
 import BugDetails from "./BugDetails";
+import { ChevronLeft } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function TeamWorkspace() {
+  const router = useRouter();
+
   const [showBugDetails, setShowBugDetails] = useState<boolean>(false);
   const [displayedBugDetails, setDisplayedBugDetails] = useState({
     id: 0,
@@ -89,7 +93,22 @@ export default function TeamWorkspace() {
   ]);
 
   return (
-    <div className="w-full h-full pt-20 p-5">
+    <div className="w-full h-full pt-18 p-5">
+      {/* Close Button */}
+      <div
+        className="
+        mb-1
+        flex w-fit items-center justify-center bg-white/10 rounded-lg 
+        transition-all duration-300 hover:scale-110 active:scale-80
+        "
+      >
+        <ChevronLeft
+          size={30}
+          className="cursor-pointer"
+          onClick={() => router.push("/teams")}
+        />
+      </div>
+
       <h1 className="font-heading text-3xl">Concurrent Team</h1>
       <p className="font-sans text-white/50 max-w-2xl mb-6">
         Bugs submitted by QA for investigation and resolution.

@@ -5,7 +5,7 @@ import { ChevronLeft, Send } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import CommentCard from "./CommentCard";
 import Input from "../ui/input/Input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface BugDetailsProps {
   id: number;
@@ -28,6 +28,17 @@ export default function BugDetails({
   setShowBugDetails,
 }: BugDetailsProps) {
   const [newComment, setNewComment] = useState<string>("");
+
+  useEffect(() => {
+    if (!showBugDetails) return;
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [showBugDetails]);
 
   return (
     <AnimatePresence>
@@ -53,6 +64,7 @@ export default function BugDetails({
                 onClick={() => setShowBugDetails(false)}
               />
             </div>
+
             {/* Bug Reference Details*/}
             <div
               className="w-full md:w-full min-h-30 font-sans
