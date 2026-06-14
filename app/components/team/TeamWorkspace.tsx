@@ -99,12 +99,12 @@ export default function TeamWorkspace() {
         className="
         mb-1
         flex w-fit items-center justify-center bg-white/10 rounded-lg 
-        transition-all duration-300 hover:scale-110 active:scale-80
+        transition-all duration-300 hover:scale-110 active:scale-80 active:bg-amber-500/30
         "
       >
         <ChevronLeft
           size={30}
-          className="cursor-pointer"
+          className="cursor-pointer transition-all duration-300 active:text-amber-500"
           onClick={() => router.push("/teams")}
         />
       </div>

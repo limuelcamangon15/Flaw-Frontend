@@ -66,10 +66,15 @@ export default function AddTeamForm({
             transition={{ duration: 0.3 }}
           >
             {/* Close Button */}
-            <div className="absolute top-5 left-3 flex w-fit items-center justify-center bg-white/10 rounded-lg transition-all duration-300 hover:scale-110 active:scale-80">
+            <div
+              className="absolute top-5 left-3 
+              flex w-fit items-center justify-center bg-white/10 rounded-lg 
+              transition-all duration-300 hover:scale-110 active:scale-80 active:bg-amber-500/30
+              "
+            >
               <ChevronLeft
                 size={30}
-                className="cursor-pointer"
+                className="cursor-pointer transition-all duration-300 active:text-amber-500"
                 onClick={() => setShowAddForm(false)}
               />
             </div>
