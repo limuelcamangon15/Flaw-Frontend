@@ -120,7 +120,7 @@ export default function BugDetails({
             </div>
 
             {/* Comment Input Field*/}
-            <div className="relative bottom-0 w-full md:w-[90%] flex items-center gap-2">
+            <div className="relative bottom-0 w-full md:w-full flex items-center gap-2">
               <div className="w-full">
                 <Input
                   label=""
