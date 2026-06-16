@@ -140,16 +140,16 @@ export default function BugDetails({
               {/* Send button */}
               <button
                 type="submit"
-                className="flex items-center justify-center cursor-pointer
+                className="flex relative items-center justify-center cursor-pointer
                  w-12 h-11 mt-1 group
                  rounded-full bg-linear-to-tr from-amber-800 to-amber-400 
                  text-white 
                  hover:scale-105 active:scale-85
-                 transition-all duration-300 relative"
+                 transition-all duration-300"
               >
                 <Send
                   size={24}
-                  className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all duration-300 absolute"
+                  className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-all duration-300 absolute"
                 />
               </button>
             </div>
