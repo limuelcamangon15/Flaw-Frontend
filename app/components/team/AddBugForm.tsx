@@ -1,6 +1,6 @@
 "use client";
 
-import { Bug, ChevronLeft, Plus, Users } from "lucide-react";
+import { Bug, ChevronLeft, Plus } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import Input from "../ui/input/Input";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
@@ -33,7 +33,23 @@ export default function AddBugForm({
     assigneeIdInteraction: false,
   });
 
-  const isValid = newBugReport.description.trim() !== "";
+  const [activeCategory, setActiveCategory] = useState<string>("");
+
+  const titleError =
+    isBugReportInteracted.titleInteraction && newBugReport.title.trim() === "";
+
+  const descriptionError =
+    isBugReportInteracted.descriptionInteraction &&
+    newBugReport.description.trim() === "";
+
+  const categoryError =
+    isBugReportInteracted.categoryInteraction &&
+    newBugReport.category.trim() === "";
+
+  const isFormValid =
+    newBugReport.title.trim() !== "" &&
+    newBugReport.description.trim() !== "" &&
+    newBugReport.category.trim() !== "";
 
   async function handleCreate() {
     sileo.success({
@@ -71,7 +87,13 @@ export default function AddBugForm({
           exit={{ opacity: 0 }}
         >
           <motion.div
-            className="absolute top-0 right-0 h-full w-full md:w-[60%] bg-neutral-900 px-10 pt-20 p-5"
+            className={`${
+              newBugReport.category === "Back-end"
+                ? "bg-linear-to-tr from-neutral-950 to-blue-950"
+                : newBugReport.category === "Front-end"
+                ? "bg-linear-to-tr from-neutral-950 to-amber-900"
+                : "bg-neutral-900"
+            } absolute top-0 right-0 h-full w-full md:w-[60%] px-10 pt-20 p-5`}
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
@@ -97,33 +119,136 @@ export default function AddBugForm({
               team investigate and resolve it.
             </p>
 
-            <section className="flex mt-15 flex-col gap-8">
-              <Input
-                label="Description"
-                htmlFor="description"
-                id="description"
-                name="description"
-                onChange={(value) => {
-                  setNewBugReport((prev) => ({
-                    ...prev,
-                    description: value,
-                  }));
+            <section className="flex mt-15 flex-col gap-5">
+              <>
+                <label className="font-sans text-xs font-medium -mb-3 text-white/50 tracking-wide uppercase">
+                  Category
+                </label>
 
-                  setIsBugReportInteracted((prev) => ({
-                    ...prev,
-                    descriptionInteraction: true,
-                  }));
-                }}
-                placeholder="Describe the defect you found..."
-              />
-              {/* Error Message */}
-              <span className="-mt-6 flex gap-1">
-                {!isValid && isBugReportInteracted.descriptionInteraction && (
-                  <p className="text-red-600 text-xs">
-                    Description is required.
-                  </p>
-                )}
-              </span>
+                <div className="flex gap-2">
+                  <span
+                    onClick={() => {
+                      setActiveCategory("Front-end");
+
+                      setNewBugReport((prev) => ({
+                        ...prev,
+                        category: "Front-end",
+                      }));
+
+                      setIsBugReportInteracted((prev) => ({
+                        ...prev,
+                        categoryInteraction: true,
+                      }));
+                    }}
+                    className={`${
+                      activeCategory === "Front-end"
+                        ? "opacity-100"
+                        : "opacity-30"
+                    } 
+                    font-sans rounded-full border px-2.5 py-1 text-sm cursor-pointer
+                               text-amber-400 bg-amber-950/50 border-amber-400/10
+                               transition-all duration-300
+                               hover:opacity-50 hover:-translate-y-1 hover:scale-102
+                               active:scale-85
+                              `}
+                  >
+                    Front-end
+                  </span>
+
+                  <span
+                    onClick={() => {
+                      setActiveCategory("Back-end");
+
+                      setNewBugReport((prev) => ({
+                        ...prev,
+                        category: "Back-end",
+                      }));
+
+                      setIsBugReportInteracted((prev) => ({
+                        ...prev,
+                        categoryInteraction: true,
+                      }));
+                    }}
+                    className={`${
+                      activeCategory === "Back-end"
+                        ? "opacity-100"
+                        : "opacity-30"
+                    } 
+                    font-sans rounded-full border px-2.5 py-1 text-sm cursor-pointer
+                               text-indigo-500 bg-indigo-950/50 border-indigo-500/10
+                               transition-all duration-300
+                               hover:opacity-50 hover:-translate-y-1 hover:scale-102
+                               active:scale-85
+                              `}
+                  >
+                    Back-end
+                  </span>
+                </div>
+                {/* Error Message */}
+                <span className="-mt-3.5 flex gap-1">
+                  {categoryError && (
+                    <p className="text-red-600 text-xs">
+                      Category is required.
+                    </p>
+                  )}
+                </span>
+              </>
+
+              <>
+                <Input
+                  label="Title"
+                  htmlFor="title"
+                  id="title"
+                  name="title"
+                  onChange={(value) => {
+                    setNewBugReport((prev) => ({
+                      ...prev,
+                      title: value,
+                    }));
+
+                    setIsBugReportInteracted((prev) => ({
+                      ...prev,
+                      titleInteraction: true,
+                    }));
+                  }}
+                  placeholder="Set a meaningful bug report title..."
+                />
+                {/* Error Message */}
+                <span className="-mt-3.5 flex gap-1">
+                  {titleError && (
+                    <p className="text-red-600 text-xs">Title is required.</p>
+                  )}
+                </span>
+              </>
+
+              <>
+                <Input
+                  label="Description"
+                  htmlFor="description"
+                  id="description"
+                  name="description"
+                  onChange={(value) => {
+                    setNewBugReport((prev) => ({
+                      ...prev,
+                      description: value,
+                    }));
+
+                    setIsBugReportInteracted((prev) => ({
+                      ...prev,
+                      descriptionInteraction: true,
+                    }));
+                  }}
+                  placeholder="Describe the defect you found..."
+                />
+                {/* Error Message */}
+                <span className="-mt-3.5 flex gap-1">
+                  {descriptionError && (
+                    <p className="text-red-600 text-xs">
+                      Description is required.
+                    </p>
+                  )}
+                </span>
+              </>
 
               <Button
                 label="Submit Bug Report"
@@ -136,7 +261,7 @@ export default function AddBugForm({
                 }
                 onClick={handleCreate}
                 width="w-full"
-                disabled={!isValid}
+                disabled={!isFormValid}
               />
             </section>
           </motion.div>
