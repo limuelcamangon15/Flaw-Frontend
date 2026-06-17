@@ -6,6 +6,7 @@ import Input from "../ui/input/Input";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Button from "../ui/button/Button";
 import { sileo } from "sileo";
+import { BugRequest } from "@/app/types/bug";
 
 interface AddBugFormProps {
   showAddBugForm: boolean;
@@ -16,11 +17,23 @@ export default function AddBugForm({
   showAddBugForm,
   setShowAddBugForm,
 }: AddBugFormProps) {
-  const [bugContext, setBugContext] = useState<string>("");
-  const [isBugContextInteracted, setIsBugContextInteracted] =
-    useState<boolean>(false);
+  const [newBugReport, setNewBugReport] = useState<BugRequest>({
+    title: "",
+    description: "",
+    category: "",
+    teamId: 0,
+    assigneeId: 0,
+  });
 
-  const isValid = bugContext.trim() !== "";
+  const [isBugReportInteracted, setIsBugReportInteracted] = useState({
+    titleInteraction: false,
+    descriptionInteraction: false,
+    categoryInteraction: false,
+    teamIdInteraction: false,
+    assigneeIdInteraction: false,
+  });
+
+  const isValid = newBugReport.description.trim() !== "";
 
   async function handleCreate() {
     sileo.success({
@@ -86,20 +99,29 @@ export default function AddBugForm({
 
             <section className="flex mt-15 flex-col gap-8">
               <Input
-                label="Bug Context"
-                htmlFor="bugContext"
-                id="bugContext"
-                name="bugContext"
+                label="Description"
+                htmlFor="description"
+                id="description"
+                name="description"
                 onChange={(value) => {
-                  setBugContext(value);
-                  setIsBugContextInteracted(true);
+                  setNewBugReport((prev) => ({
+                    ...prev,
+                    description: value,
+                  }));
+
+                  setIsBugReportInteracted((prev) => ({
+                    ...prev,
+                    descriptionInteraction: true,
+                  }));
                 }}
-                placeholder="eg. HagonoyTides, Team Concurrent"
+                placeholder="Describe the defect you found..."
               />
               {/* Error Message */}
               <span className="-mt-6 flex gap-1">
-                {!isValid && isBugContextInteracted && (
-                  <p className="text-red-600 text-xs">Team Name is required.</p>
+                {!isValid && isBugReportInteracted.descriptionInteraction && (
+                  <p className="text-red-600 text-xs">
+                    Description is required.
+                  </p>
                 )}
               </span>
 
