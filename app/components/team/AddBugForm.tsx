@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronLeft, Plus, Users } from "lucide-react";
+import { Bug, ChevronLeft, Plus, Users } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import Input from "../ui/input/Input";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
@@ -104,11 +104,11 @@ export default function AddBugForm({
               </span>
 
               <Button
-                label="Create Team"
+                label="Submit Bug Report"
                 color="green"
                 icon={
                   <div className="flex items-center relative mr-2">
-                    <Users />
+                    <Bug />
                     <Plus size={16} className="absolute left-4.5 -top-0.5" />
                   </div>
                 }
