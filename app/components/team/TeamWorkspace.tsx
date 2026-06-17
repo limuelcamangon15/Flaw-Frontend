@@ -3,12 +3,15 @@
 import { useState } from "react";
 import BugCard from "./BugCard";
 import BugDetails from "./BugDetails";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Button from "../ui/button/Button";
+import AddBugForm from "./AddBugForm";
 
 export default function TeamWorkspace() {
   const router = useRouter();
 
+  const [showAddBugForm, setShowAddBugForm] = useState<boolean>(false);
   const [showBugDetails, setShowBugDetails] = useState<boolean>(false);
   const [displayedBugDetails, setDisplayedBugDetails] = useState({
     id: 0,
@@ -114,6 +117,15 @@ export default function TeamWorkspace() {
         Bugs submitted by QA for investigation and resolution.
       </p>
 
+      <div className="w-full flex justify-end">
+        <Button
+          label="New Bug Report"
+          color="green"
+          onClick={() => setShowAddBugForm(true)}
+          icon={<Plus size={15} />}
+        />
+      </div>
+
       <div className="w-full flex flex-col items-center gap-3 mt-5">
         {bugs.map((b, index) => (
           <BugCard
@@ -129,6 +141,11 @@ export default function TeamWorkspace() {
         {...displayedBugDetails}
         showBugDetails={showBugDetails}
         setShowBugDetails={setShowBugDetails}
+      />
+
+      <AddBugForm
+        showAddBugForm={showAddBugForm}
+        setShowAddBugForm={setShowAddBugForm}
       />
     </div>
   );

@@ -111,6 +111,7 @@ export default function BugDetails({
                 </div>
               </div>
             </div>
+
             {/* Bug Comments */}
             <div className="mt-6 p-2 flex flex-col flex-1 overflow-y-auto gap-3 scrollbar-thumb-amber-500">
               <CommentCard role="QA" />
@@ -133,7 +134,7 @@ export default function BugDetails({
                   id="comment"
                   name="comment"
                   onChange={setNewComment}
-                  placeholder="Type your thoughts about the bug here..."
+                  placeholder="Share your ideas here..."
                 />
               </div>
 
