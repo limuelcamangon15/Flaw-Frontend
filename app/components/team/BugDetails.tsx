@@ -5,24 +5,23 @@ import { ChevronLeft, Send } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import CommentCard from "./CommentCard";
 import Input from "../ui/input/Input";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { BugResponse } from "@/app/types/bug";
 
-interface BugDetailsProps {
-  id: number;
-  reportedBy: string;
-  content: string;
-  type: "Front-end" | "Back-end" | string;
-  createdAt: string;
-
+interface BugDetailsProps extends BugResponse {
   showBugDetails: boolean;
-  setShowBugDetails: (value: boolean) => void;
+  setShowBugDetails: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function BugDetails({
   id,
-  reportedBy,
-  content,
-  type,
+  title,
+  description,
+  status,
+  category,
+  reporterName,
+  assigneeName,
+  teamId,
   createdAt,
   showBugDetails,
   setShowBugDetails,
@@ -80,31 +79,31 @@ export default function BugDetails({
                 <div>
                   <div className="flex items-center gap-3 mb-2">
                     <div className="h-10 w-10 rounded-full bg-linear-to-br from-amber-400 to-orange-500 flex items-center justify-center text-sm font-bold text-black">
-                      {getInitials(reportedBy)}
+                      {getInitials(reporterName)}
                     </div>
 
                     <div>
                       <h3 className="font-semibold text-neutral-100">
-                        {reportedBy}
+                        {reporterName}
                       </h3>
                       <p className="text-xs text-neutral-500">Reporter | QA</p>
                     </div>
                   </div>
 
                   <p className="text-sm leading-relaxed text-neutral-400 line-clamp-3">
-                    {content}
+                    {description}
                   </p>
                 </div>
 
                 <div className="mt-3 flex items-center justify-between">
                   <span
                     className={`rounded-full border px-2.5 py-1 text-xs ${
-                      type === "Front-end"
+                      category === "Front-end"
                         ? " text-amber-400 bg-amber-950/50 border-amber-400/10"
                         : "text-indigo-500 bg-indigo-950/50 border-indigo-500/10"
                     }`}
                   >
-                    {type}
+                    {category}
                   </span>
 
                   <p className="text-xs text-neutral-500">{createdAt}</p>
