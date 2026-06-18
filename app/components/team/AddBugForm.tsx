@@ -89,9 +89,9 @@ export default function AddBugForm({
           <motion.div
             className={`${
               newBugReport.category === "Back-end"
-                ? "bg-linear-to-tr from-neutral-950 to-blue-950"
+                ? "bg-linear-to-tl from-neutral-950 via-neutral-900 to-blue-950"
                 : newBugReport.category === "Front-end"
-                ? "bg-linear-to-tr from-neutral-950 to-amber-900"
+                ? "bg-linear-to-tl from-neutral-950 via-neutral-900 to-amber-900"
                 : "bg-neutral-900"
             } absolute top-0 right-0 h-full w-full md:w-[60%] px-10 pt-20 p-5`}
             initial={{ x: "100%" }}
@@ -142,11 +142,11 @@ export default function AddBugForm({
                     }}
                     className={`${
                       activeCategory === "Front-end"
-                        ? "opacity-100"
-                        : "opacity-30"
+                        ? "opacity-100 border-amber-400/50"
+                        : "opacity-30 border-amber-400/10"
                     } 
                     font-sans rounded-full border px-2.5 py-1 text-sm cursor-pointer
-                               text-amber-400 bg-amber-950/50 border-amber-400/10
+                               text-amber-400 bg-amber-950/50 
                                transition-all duration-300
                                hover:opacity-50 hover:-translate-y-1 hover:scale-102
                                active:scale-85
@@ -171,11 +171,11 @@ export default function AddBugForm({
                     }}
                     className={`${
                       activeCategory === "Back-end"
-                        ? "opacity-100"
-                        : "opacity-30"
+                        ? "opacity-100 border-indigo-500/50"
+                        : "opacity-30 border-indigo-500/10"
                     } 
                     font-sans rounded-full border px-2.5 py-1 text-sm cursor-pointer
-                               text-indigo-500 bg-indigo-950/50 border-indigo-500/10
+                               text-indigo-500 bg-indigo-950/50
                                transition-all duration-300
                                hover:opacity-50 hover:-translate-y-1 hover:scale-102
                                active:scale-85
