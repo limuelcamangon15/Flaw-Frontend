@@ -1,11 +1,23 @@
+/* ------------------------- Types ------------------------- */
+export type BugStatus =
+  | "OPEN"
+  | "IN_PROGRESS"
+  | "FIXED"
+  | "VERIFIED"
+  | "CLOSED"
+  | "";
+
+export type BugCategory = "Front-end" | "Back-end" | "";
+
+/* ------------------------- Interfaces ------------------------- */
 export interface BugResponse {
   id: number;
   title: string;
   description: string;
-  status: "OPEN" | "IN_PROGRESS" | "FIXED" | "VERIFIED" | "CLOSED" | string;
-  category: "Front-end" | "Back-end" | string;
+  status: BugStatus;
+  category: BugCategory;
   reporterName: string;
-  assigneeName: string;
+  assigneeName: string | null;
   teamId: number;
   createdAt: string;
 }
@@ -13,7 +25,7 @@ export interface BugResponse {
 export interface BugRequest {
   title: string;
   description: string;
-  category: "Front-end" | "Back-end" | string;
+  category: BugCategory;
   teamId: number;
   assigneeId?: number;
 }

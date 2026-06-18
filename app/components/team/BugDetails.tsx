@@ -1,7 +1,7 @@
 "use client";
 
 import { getInitials } from "@/app/utils/utils";
-import { ChevronLeft, Send } from "lucide-react";
+import { ChevronLeft, Send, UserCog } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import CommentCard from "./CommentCard";
 import Input from "../ui/input/Input";
@@ -109,6 +109,13 @@ export default function BugDetails({
                   <p className="text-xs text-neutral-500">{createdAt}</p>
                 </div>
               </div>
+            </div>
+            <div className="flex  gap-2 items-center bg-amber-500/30 rounded-b-2xl -mt-4 pt-4.5 pb-1 p-3 border border-amber-300/50">
+              <span className="text-xs font-sans flex gap-1 opacity-80">
+                <UserCog size={13} />
+                <p>Assgined to</p>
+              </span>
+              <p className="text-sm font-sans font-medium">Limuel Camangon</p>
             </div>
 
             {/* Bug Comments */}

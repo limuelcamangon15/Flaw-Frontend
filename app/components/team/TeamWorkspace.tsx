@@ -7,13 +7,14 @@ import { ChevronLeft, Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Button from "../ui/button/Button";
 import AddBugForm from "./AddBugForm";
+import { BugResponse } from "@/app/types/bug";
 
 export default function TeamWorkspace() {
   const router = useRouter();
 
   const [showAddBugForm, setShowAddBugForm] = useState<boolean>(false);
   const [showBugDetails, setShowBugDetails] = useState<boolean>(false);
-  const [displayedBugDetails, setDisplayedBugDetails] = useState({
+  const [displayedBugDetails, setDisplayedBugDetails] = useState<BugResponse>({
     id: 0,
     title: "",
     description: "",
@@ -25,15 +26,15 @@ export default function TeamWorkspace() {
     createdAt: "",
   });
 
-  const [bugs, setBugs] = useState([
+  const [bugs, setBugs] = useState<BugResponse[]>([
     {
       id: 1,
       title: "Login button not responsive",
       description: "Login button is not responsive on mobile devices.",
-      status: "Open",
+      status: "OPEN",
       category: "Front-end",
       reporterName: "John Doe",
-      assigneeName: "Unassigned",
+      assigneeName: null,
       teamId: 1,
       createdAt: "May 15, 2005 · 11:10 AM",
     },
@@ -41,7 +42,7 @@ export default function TeamWorkspace() {
       id: 2,
       title: "User profile API returns 500",
       description: "API returns 500 error when fetching user profile data.",
-      status: "In Progress",
+      status: "IN_PROGRESS",
       category: "Back-end",
       reporterName: "Jane Smith",
       assigneeName: "Mike Johnson",
@@ -52,10 +53,10 @@ export default function TeamWorkspace() {
       id: 3,
       title: "Sidebar overlaps content",
       description: "Sidebar navigation overlaps content on smaller screens.",
-      status: "Open",
+      status: "OPEN",
       category: "Front-end",
       reporterName: "Michael Reyes",
-      assigneeName: "Unassigned",
+      assigneeName: null,
       teamId: 1,
       createdAt: "Jul 08, 2005 · 02:30 PM",
     },
@@ -63,7 +64,7 @@ export default function TeamWorkspace() {
       id: 4,
       title: "Database timeout during peak hours",
       description: "Database connection timeout occurs during peak hours.",
-      status: "In Progress",
+      status: "IN_PROGRESS",
       category: "Back-end",
       reporterName: "Sarah Lee",
       assigneeName: "Kevin Brown",
@@ -74,7 +75,7 @@ export default function TeamWorkspace() {
       id: 5,
       title: "Dark mode inconsistency",
       description: "Dark mode theme is not applied consistently across pages.",
-      status: "Resolved",
+      status: "CLOSED",
       category: "Front-end",
       reporterName: "David Cruz",
       assigneeName: "Anna Garcia",
@@ -85,10 +86,10 @@ export default function TeamWorkspace() {
       id: 6,
       title: "PDF uploads rejected",
       description: "File upload endpoint rejects valid PDF documents.",
-      status: "Open",
+      status: "OPEN",
       category: "Back-end",
       reporterName: "Emily Santos",
-      assigneeName: "Chris Tan",
+      assigneeName: null,
       teamId: 2,
       createdAt: "Oct 10, 2005 · 01:50 PM",
     },
@@ -96,7 +97,7 @@ export default function TeamWorkspace() {
       id: 7,
       title: "Dropdown closes unexpectedly",
       description: "Dropdown menu closes unexpectedly when scrolling.",
-      status: "In Progress",
+      status: "IN_PROGRESS",
       category: "Front-end",
       reporterName: "Chris Tan",
       assigneeName: "Sarah Lee",
@@ -108,10 +109,10 @@ export default function TeamWorkspace() {
       title: "Notification delivery delay",
       description:
         "Notification service delays message delivery by several minutes.",
-      status: "Open",
+      status: "OPEN",
       category: "Back-end",
       reporterName: "Anna Garcia",
-      assigneeName: "Unassigned",
+      assigneeName: null,
       teamId: 2,
       createdAt: "Dec 12, 2005 · 10:40 AM",
     },
@@ -119,7 +120,7 @@ export default function TeamWorkspace() {
       id: 9,
       title: "Validation messages missing",
       description: "Form validation messages are not displayed correctly.",
-      status: "Resolved",
+      status: "CLOSED",
       category: "Front-end",
       reporterName: "Kevin Lim",
       assigneeName: "John Doe",
@@ -128,12 +129,12 @@ export default function TeamWorkspace() {
     },
     {
       id: 10,
-      title: "Session expires after login",
+      title: "Session expires immediately after login",
       description: "User session expires immediately after successful login.",
-      status: "Open",
+      status: "OPEN",
       category: "Back-end",
       reporterName: "Maria Torres",
-      assigneeName: "Jane Smith",
+      assigneeName: null,
       teamId: 2,
       createdAt: "Feb 22, 2006 · 12:00 PM",
     },
