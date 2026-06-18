@@ -1,8 +1,12 @@
-export interface Bug {
+export interface BugResponse {
   id: number;
-  reportedBy: string;
-  content: string;
-  type: "Front-end" | "Back-end" | string;
+  title: string;
+  description: string;
+  status: "OPEN" | "IN_PROGRESS" | "FIXED" | "VERIFIED" | "CLOSED" | string;
+  category: "Front-end" | "Back-end" | string;
+  reporterName: string;
+  assigneeName: string;
+  teamId: number;
   createdAt: string;
 }
 
