@@ -24,7 +24,11 @@ export default function BugCard({
   setDisplayedBugDetails,
 }: BugCardProps) {
   return (
-    <div className="w-full md:w-[85%] min-h-30 ">
+    <div
+      className="w-full md:w-[85%] min-h-30 
+                transition-all duration-300 
+                hover:-translate-y-1 active:scale-90"
+    >
       <div
         onClick={() => {
           setShowBugDetails(true);
@@ -43,7 +47,8 @@ export default function BugCard({
         className="w-full min-h-30 font-sans
                 relative group overflow-hidden cursor-pointer rounded-2xl 
                 border border-neutral-800 bg-neutral-900 p-4 
-                transition-all duration-300 hover:border-amber-500/30 hover:-translate-y-1 active:scale-90"
+                transition-all duration-300 
+                hover:border-amber-500/30"
       >
         <div className="flex h-full flex-col justify-between">
           <div>
