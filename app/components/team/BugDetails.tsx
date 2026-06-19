@@ -115,7 +115,7 @@ export default function BugDetails({
                 <UserCog size={13} />
                 <p>Assgined to</p>
               </span>
-              <p className="text-sm font-sans font-medium">Limuel Camangon</p>
+              <p className="text-sm font-sans font-medium">{assigneeName}</p>
             </div>
 
             {/* Bug Comments */}
