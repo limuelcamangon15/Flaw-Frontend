@@ -72,7 +72,7 @@ export default function BugDetails({
             {/* Bug Reference Details*/}
             <div
               className="w-full md:w-full min-h-30 font-sans
-                           relative group overflow-hidden rounded-2xl 
+                           relative group overflow-hidden rounded-2xl rounded-br-none
                            border border-neutral-800 bg-neutral-900 p-4 "
             >
               <div className="flex h-full flex-col justify-between">
@@ -110,13 +110,23 @@ export default function BugDetails({
                 </div>
               </div>
             </div>
-            <div className="flex  gap-2 items-center bg-amber-500/30 rounded-b-2xl -mt-4 pt-4.5 pb-1 p-3 border border-amber-300/50">
-              <span className="text-xs font-sans flex gap-1 opacity-80">
-                <UserCog size={13} />
-                <p>Assgined to</p>
-              </span>
-              <p className="text-sm font-sans font-medium">{assigneeName}</p>
-            </div>
+
+            {assigneeName ? (
+              <div className="flex  gap-2 items-center bg-amber-500/30 rounded-b-2xl -mt-4 pt-4.5 pb-1 p-3 border border-amber-300/50">
+                <span className="text-xs font-sans flex gap-1 opacity-80">
+                  <UserCog size={13} />
+                  <p>Assgined to</p>
+                </span>
+                <p className="text-sm font-sans font-medium">{assigneeName}</p>
+              </div>
+            ) : (
+              <div className="flex  gap-2 items-center bg-gray-500/30 rounded-b-2xl -mt-4 pt-4.5 pb-1 p-3 border border-gray-300/30">
+                <span className="text-xs font-sans flex gap-1 opacity-80">
+                  <UserCog size={13} />
+                  <p>Unassigned</p>
+                </span>
+              </div>
+            )}
 
             {/* Bug Comments */}
             <div className="mt-6 p-2 flex flex-col flex-1 overflow-y-auto gap-3 scrollbar-thumb-amber-500">

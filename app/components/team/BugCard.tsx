@@ -25,27 +25,27 @@ export default function BugCard({
 }: BugCardProps) {
   return (
     <div
-      className="w-full md:w-[85%] min-h-30 
+      onClick={() => {
+        setShowBugDetails(true);
+        setDisplayedBugDetails({
+          id,
+          title,
+          description,
+          status,
+          category,
+          reporterName,
+          assigneeName,
+          teamId,
+          createdAt,
+        });
+      }}
+      className="w-full md:w-[85%] min-h-30 cursor-pointer
                 transition-all duration-300 
                 hover:-translate-y-1 active:scale-90"
     >
       <div
-        onClick={() => {
-          setShowBugDetails(true);
-          setDisplayedBugDetails({
-            id,
-            title,
-            description,
-            status,
-            category,
-            reporterName,
-            assigneeName,
-            teamId,
-            createdAt,
-          });
-        }}
         className="w-full min-h-30 font-sans
-                relative group overflow-hidden cursor-pointer rounded-2xl 
+                relative group overflow-hidden rounded-2xl rounded-br-none 
                 border border-neutral-800 bg-neutral-900 p-4 
                 transition-all duration-300 
                 hover:border-amber-500/30"
@@ -86,13 +86,22 @@ export default function BugCard({
         </div>
       </div>
 
-      <div className="flex  gap-2 items-center bg-amber-500/30 rounded-b-2xl -mt-4 pt-4.5 pb-1 p-3 border border-amber-300/50">
-        <span className="text-xs font-sans flex gap-1 opacity-80">
-          <UserCog size={13} />
-          <p>Assgined to</p>
-        </span>
-        <p className="text-sm font-sans font-medium">{assigneeName}</p>
-      </div>
+      {assigneeName ? (
+        <div className="flex  gap-2 items-center bg-amber-500/30 rounded-b-2xl -mt-4 pt-4.5 pb-1 p-3 border border-amber-300/50">
+          <span className="text-xs font-sans flex gap-1 opacity-80">
+            <UserCog size={13} />
+            <p>Assgined to</p>
+          </span>
+          <p className="text-sm font-sans font-medium">{assigneeName}</p>
+        </div>
+      ) : (
+        <div className="flex  gap-2 items-center bg-gray-500/30 rounded-b-2xl -mt-4 pt-4.5 pb-1 p-3 border border-gray-300/30">
+          <span className="text-xs font-sans flex gap-1 opacity-80">
+            <UserCog size={13} />
+            <p>Unassigned</p>
+          </span>
+        </div>
+      )}
     </div>
   );
 }
