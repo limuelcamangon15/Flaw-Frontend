@@ -130,6 +130,15 @@ export default function BugDetails({
 
             {/* Bug Comments */}
             <div className="mt-6 p-2 flex flex-col flex-1 overflow-y-auto gap-3 scrollbar-thumb-amber-500">
+              {/* 
+                No comment placeholder
+
+             <div className="w-full flex items-center justify-center h-full">
+                <p className="font-sans font-medium  text-xs text-center">
+                  Start a discussion about the reported bug
+                </p>
+              </div> */}
+
               <CommentCard role="QA" />
               <CommentCard role="DEVELOPER" />
               <CommentCard role="QA" />
