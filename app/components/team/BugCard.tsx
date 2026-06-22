@@ -4,6 +4,8 @@ import { BugResponse } from "@/app/types/bug";
 import { getInitials } from "@/app/utils/utils";
 import { UserCog } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
+import CategoryBadge from "./CategoryBadge";
+import StatusBadge from "./StatusBadge";
 
 interface BugCardProps extends BugResponse {
   setShowBugDetails: Dispatch<SetStateAction<boolean>>;
@@ -70,19 +72,15 @@ export default function BugCard({
             </p>
           </div>
 
-          <div className="mt-3 flex items-center justify-between">
-            <span
-              className={`rounded-full border px-2.5 py-1 text-xs ${
-                category === "Front-end"
-                  ? " text-amber-400 bg-amber-950/50 border-amber-400/10"
-                  : "text-indigo-500 bg-indigo-950/50 border-indigo-500/10"
-              }`}
-            >
-              {category}
-            </span>
+          <section className="flex items-center justify-between mt-3">
+            <div className="flex gap-2 items-center">
+              <CategoryBadge category={category} />
+
+              <StatusBadge status={status} />
+            </div>
 
             <p className="text-xs text-neutral-500">{createdAt}</p>
-          </div>
+          </section>
         </div>
       </div>
 
