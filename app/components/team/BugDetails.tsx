@@ -81,16 +81,24 @@ export default function BugDetails({
             >
               <div className="flex h-full flex-col justify-between">
                 <div>
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="h-10 w-10 rounded-full bg-linear-to-br from-amber-400 to-orange-500 flex items-center justify-center text-sm font-bold text-black">
-                      {getInitials(reporterName)}
+                  <div className="flex justify-between mb-2">
+                    <div className="flex items-center gap-3">
+                      <div className="h-10 w-10 rounded-full bg-linear-to-br from-amber-400 to-orange-500 flex items-center justify-center text-sm font-bold text-black">
+                        {getInitials(reporterName)}
+                      </div>
+
+                      <div>
+                        <h3 className="font-semibold text-neutral-100">
+                          {reporterName}
+                        </h3>
+                        <p className="text-xs text-neutral-500">
+                          Reporter | QA
+                        </p>
+                      </div>
                     </div>
 
-                    <div>
-                      <h3 className="font-semibold text-neutral-100">
-                        {reporterName}
-                      </h3>
-                      <p className="text-xs text-neutral-500">Reporter | QA</p>
+                    <div className="block md:hidden">
+                      <StatusBadge status={status} />
                     </div>
                   </div>
 
@@ -103,7 +111,7 @@ export default function BugDetails({
                   <div className="flex gap-2 items-center">
                     <CategoryBadge category={category} />
 
-                    <StatusBadge status={status} />
+                    <StatusBadge status={status} className="hidden md:block" />
                   </div>
 
                   <p className="text-xs text-neutral-500">{createdAt}</p>
