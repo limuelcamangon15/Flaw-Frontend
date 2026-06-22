@@ -1,7 +1,7 @@
 "use client";
 
 import { getInitials } from "@/app/utils/utils";
-import { ChevronLeft, Send, UserCog } from "lucide-react";
+import { Check, ChevronLeft, Send, UserCog } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import CommentCard from "./CommentCard";
 import Input from "../ui/input/Input";
@@ -9,6 +9,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { BugResponse } from "@/app/types/bug";
 import CategoryBadge from "./CategoryBadge";
 import StatusBadge from "./StatusBadge";
+import Button from "../ui/button/Button";
 
 interface BugDetailsProps extends BugResponse {
   showBugDetails: boolean;
@@ -42,6 +43,8 @@ export default function BugDetails({
   }, [showBugDetails]);
 
   function handleSendComment() {}
+
+  function handleMarkAsVerified() {}
 
   return (
     <AnimatePresence>
@@ -133,6 +136,19 @@ export default function BugDetails({
                   <UserCog size={13} />
                   <p>Unassigned</p>
                 </span>
+              </div>
+            )}
+
+            {/* Mark as Verified Button */}
+            {status === "FIXED" && (
+              <div className="w-full md:w-1/2 flex justify-center self-center mt-3">
+                <Button
+                  onClick={handleMarkAsVerified}
+                  color="green"
+                  label="Mark as Verified"
+                  icon={<Check size={16} />}
+                  width="w-[95%]"
+                />
               </div>
             )}
 

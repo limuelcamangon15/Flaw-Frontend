@@ -42,7 +42,7 @@ export default function TeamWorkspace() {
       id: 2,
       title: "User profile API returns 500",
       description: "API returns 500 error when fetching user profile data.",
-      status: "IN_PROGRESS",
+      status: "FIXED",
       category: "Back-end",
       reporterName: "Jane Smith",
       assigneeName: "Mike Johnson",
