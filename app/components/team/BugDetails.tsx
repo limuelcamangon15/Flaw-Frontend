@@ -76,6 +76,26 @@ export default function BugDetails({
               />
             </div>
 
+            {/* Mark as Verified Button */}
+            {status === "FIXED" && (
+              <div className="absolute top-5 right-3 flex justify-center self-center">
+                <Button
+                  onClick={handleMarkAsVerified}
+                  color="green"
+                  label="Mark as Verified"
+                  icon={<Check size={16} />}
+                />
+              </div>
+            )}
+
+            {/* Reminder if FIXED */}
+            {status === "FIXED" && (
+              <span className="mb-2 block rounded-md border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-1 text-center text-xs text-emerald-300">
+                The assigned developer has marked this bug as fixed. Please
+                review it and mark it as verified if everything looks good.
+              </span>
+            )}
+
             {/* Bug Reference Details*/}
             <div
               className="w-full md:w-full min-h-30 font-sans
@@ -136,19 +156,6 @@ export default function BugDetails({
                   <UserCog size={13} />
                   <p>Unassigned</p>
                 </span>
-              </div>
-            )}
-
-            {/* Mark as Verified Button */}
-            {status === "FIXED" && (
-              <div className="w-full md:w-1/2 flex justify-center self-center mt-3">
-                <Button
-                  onClick={handleMarkAsVerified}
-                  color="green"
-                  label="Mark as Verified"
-                  icon={<Check size={16} />}
-                  width="w-[95%]"
-                />
               </div>
             )}
 
