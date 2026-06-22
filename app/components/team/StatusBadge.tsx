@@ -11,10 +11,16 @@ const statusStyles: Record<BugStatus, string> = {
   "": "",
 };
 
-export default function StatusBadge({ status }: { status: BugStatus }) {
+export default function StatusBadge({
+  status,
+  className,
+}: {
+  status: BugStatus;
+  className?: string;
+}) {
   return (
     <span
-      className={`rounded-full border px-3 py-1 text-xs font-semibold ${statusStyles[status]}`}
+      className={`rounded-full border px-3 py-1 text-xs font-semibold ${statusStyles[status]} ${className}`}
     >
       {status.replace(/_/g, " ")}
     </span>
