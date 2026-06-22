@@ -39,6 +39,8 @@ export default function BugDetails({
     };
   }, [showBugDetails]);
 
+  function handleSendComment() {}
+
   return (
     <AnimatePresence>
       {showBugDetails && (
@@ -165,6 +167,7 @@ export default function BugDetails({
 
               {/* Send button */}
               <button
+                onClick={handleSendComment}
                 type="submit"
                 className="flex relative items-center justify-center cursor-pointer
                  w-12 h-11 mt-1 group
