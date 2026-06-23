@@ -4,8 +4,8 @@ import { BugResponse } from "@/app/types/bug";
 import { getInitials } from "@/app/utils/utils";
 import { UserCog } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
-import CategoryBadge from "./CategoryBadge";
-import StatusBadge from "./StatusBadge";
+import CategoryBadge from "../CategoryBadge";
+import StatusBadge from "../StatusBadge";
 
 interface BugCardProps extends BugResponse {
   setShowBugDetails: Dispatch<SetStateAction<boolean>>;

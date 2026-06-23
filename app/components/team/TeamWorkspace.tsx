@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import BugCard from "./BugCard";
+import BugCard from "./bug-card/BugCard";
 import BugDetails from "./BugDetails";
 import { ChevronLeft, Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -26,7 +26,8 @@ export default function TeamWorkspace() {
     createdAt: "",
   });
 
-  const [bugs, setBugs] = useState<BugResponse[]>([
+  const [bugs, setBugs] = useState<BugResponse[]>(
+    [] /* [
     {
       id: 1,
       title: "Login button not responsive",
@@ -138,7 +139,8 @@ export default function TeamWorkspace() {
       teamId: 2,
       createdAt: "Feb 22, 2006 · 12:00 PM",
     },
-  ]);
+  ] */
+  );
 
   return (
     <div className="w-full h-full pt-18 p-5">
@@ -172,6 +174,12 @@ export default function TeamWorkspace() {
       </div>
 
       <div className="w-full flex flex-col items-center gap-3 mt-5">
+        {bugs.length === 0 && (
+          <span className="font-sans text-xs text-white/70 text-center mt-30 px-14">
+            No bugs reported yet. Start by reporting the first bug you found.
+          </span>
+        )}
+
         {bugs.map((b, index) => (
           <BugCard
             key={index}
