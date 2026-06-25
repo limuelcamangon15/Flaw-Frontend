@@ -26,8 +26,7 @@ export default function TeamWorkspace() {
     createdAt: "",
   });
 
-  const [bugs, setBugs] = useState<BugResponse[]>(
-    [] /* [
+  const [bugs, setBugs] = useState<BugResponse[]>([
     {
       id: 1,
       title: "Login button not responsive",
@@ -38,6 +37,18 @@ export default function TeamWorkspace() {
       assigneeName: null,
       teamId: 1,
       createdAt: "May 15, 2005 · 11:10 AM",
+      analysis: {
+        severity: "High",
+        labels: ["UI", "Mobile"],
+        possibleRootCauses: [
+          "Touch event not firing correctly",
+          "CSS overlay blocking clicks",
+        ],
+        suggestedNextSteps: [
+          "Test on multiple mobile devices",
+          "Inspect click event listeners",
+        ],
+      },
     },
     {
       id: 2,
@@ -49,6 +60,15 @@ export default function TeamWorkspace() {
       assigneeName: "Mike Johnson",
       teamId: 2,
       createdAt: "Jun 02, 2005 · 09:45 AM",
+      analysis: {
+        severity: "High",
+        labels: ["API", "Server"],
+        possibleRootCauses: ["Unhandled null values", "Database query failure"],
+        suggestedNextSteps: [
+          "Review server logs",
+          "Add error handling and validation",
+        ],
+      },
     },
     {
       id: 3,
@@ -60,6 +80,18 @@ export default function TeamWorkspace() {
       assigneeName: null,
       teamId: 1,
       createdAt: "Jul 08, 2005 · 02:30 PM",
+      analysis: {
+        severity: "Medium",
+        labels: ["Responsive", "Layout"],
+        possibleRootCauses: [
+          "Improper media query breakpoints",
+          "Fixed width sidebar",
+        ],
+        suggestedNextSteps: [
+          "Review responsive styles",
+          "Test across common screen sizes",
+        ],
+      },
     },
     {
       id: 4,
@@ -71,6 +103,18 @@ export default function TeamWorkspace() {
       assigneeName: "Kevin Brown",
       teamId: 2,
       createdAt: "Aug 14, 2005 · 04:20 PM",
+      analysis: {
+        severity: "High",
+        labels: ["Database", "Performance"],
+        possibleRootCauses: [
+          "Connection pool exhaustion",
+          "Slow-running queries",
+        ],
+        suggestedNextSteps: [
+          "Analyze query performance",
+          "Increase connection pool capacity",
+        ],
+      },
     },
     {
       id: 5,
@@ -82,6 +126,18 @@ export default function TeamWorkspace() {
       assigneeName: "Anna Garcia",
       teamId: 1,
       createdAt: "Sep 01, 2005 · 08:15 AM",
+      analysis: {
+        severity: "Low",
+        labels: ["Theme", "UI"],
+        possibleRootCauses: [
+          "Missing theme variables",
+          "Hardcoded component styles",
+        ],
+        suggestedNextSteps: [
+          "Audit theme implementation",
+          "Replace hardcoded colors",
+        ],
+      },
     },
     {
       id: 6,
@@ -93,6 +149,18 @@ export default function TeamWorkspace() {
       assigneeName: null,
       teamId: 2,
       createdAt: "Oct 10, 2005 · 01:50 PM",
+      analysis: {
+        severity: "Medium",
+        labels: ["Upload", "Validation"],
+        possibleRootCauses: [
+          "Incorrect MIME type validation",
+          "File size restrictions",
+        ],
+        suggestedNextSteps: [
+          "Verify upload validation rules",
+          "Test with multiple PDF formats",
+        ],
+      },
     },
     {
       id: 7,
@@ -104,6 +172,18 @@ export default function TeamWorkspace() {
       assigneeName: "Sarah Lee",
       teamId: 1,
       createdAt: "Nov 05, 2005 · 03:05 PM",
+      analysis: {
+        severity: "Medium",
+        labels: ["UI", "Interaction"],
+        possibleRootCauses: [
+          "Scroll event triggers blur",
+          "State resets on re-render",
+        ],
+        suggestedNextSteps: [
+          "Debug dropdown lifecycle",
+          "Inspect scroll event handlers",
+        ],
+      },
     },
     {
       id: 8,
@@ -116,6 +196,18 @@ export default function TeamWorkspace() {
       assigneeName: null,
       teamId: 2,
       createdAt: "Dec 12, 2005 · 10:40 AM",
+      analysis: {
+        severity: "High",
+        labels: ["Notifications", "Queue"],
+        possibleRootCauses: [
+          "Message queue backlog",
+          "Worker service bottleneck",
+        ],
+        suggestedNextSteps: [
+          "Inspect queue metrics",
+          "Scale notification workers",
+        ],
+      },
     },
     {
       id: 9,
@@ -127,6 +219,18 @@ export default function TeamWorkspace() {
       assigneeName: "John Doe",
       teamId: 1,
       createdAt: "Jan 18, 2006 · 05:25 PM",
+      analysis: {
+        severity: "Low",
+        labels: ["Forms", "Validation"],
+        possibleRootCauses: [
+          "Conditional rendering issue",
+          "Validation state not propagated",
+        ],
+        suggestedNextSteps: [
+          "Review form validation flow",
+          "Add UI tests for validation errors",
+        ],
+      },
     },
     {
       id: 10,
@@ -138,9 +242,20 @@ export default function TeamWorkspace() {
       assigneeName: null,
       teamId: 2,
       createdAt: "Feb 22, 2006 · 12:00 PM",
+      analysis: {
+        severity: "High",
+        labels: ["Authentication", "Session"],
+        possibleRootCauses: [
+          "JWT expiration misconfiguration",
+          "Session cookie not persisting",
+        ],
+        suggestedNextSteps: [
+          "Verify token expiration settings",
+          "Inspect session cookie behavior",
+        ],
+      },
     },
-  ] */
-  );
+  ]);
 
   return (
     <div className="w-full h-full pt-18 p-5">
