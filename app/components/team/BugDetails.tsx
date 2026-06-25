@@ -38,7 +38,9 @@ export default function BugDetails({
   setShowBugDetails,
 }: BugDetailsProps) {
   const [newComment, setNewComment] = useState<string>("");
-  const [showAnalysis, setShowAnalysis] = useState<boolean>(false);
+  const [showAnalysis, setShowAnalysis] = useState<boolean>(
+    window.innerWidth < 768 ? false : true
+  );
 
   useEffect(() => {
     if (!showBugDetails) return;
