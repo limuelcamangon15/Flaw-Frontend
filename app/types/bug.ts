@@ -9,6 +9,8 @@ export type BugStatus =
 
 export type BugCategory = "Front-end" | "Back-end" | "";
 
+export type AnalysisSeverity = "Low" | "Medium" | "High" | "Critical" | "";
+
 /* ------------------------- Interfaces ------------------------- */
 export interface BugResponse {
   id: number;
@@ -20,6 +22,7 @@ export interface BugResponse {
   assigneeName: string | null;
   teamId: number;
   createdAt: string;
+  analysis: BugAnalysisResponse;
 }
 
 export interface BugRequest {
@@ -28,4 +31,11 @@ export interface BugRequest {
   category: BugCategory;
   teamId: number;
   assigneeId?: number;
+}
+
+export interface BugAnalysisResponse {
+  severity: AnalysisSeverity;
+  labels: string[];
+  possibleRootCauses: string[];
+  suggestedNextSteps: string[];
 }

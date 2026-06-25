@@ -24,6 +24,12 @@ export default function TeamWorkspace() {
     assigneeName: "",
     teamId: 0,
     createdAt: "",
+    analysis: {
+      severity: "",
+      labels: [],
+      possibleRootCauses: [],
+      suggestedNextSteps: [],
+    },
   });
 
   const [bugs, setBugs] = useState<BugResponse[]>([
@@ -104,7 +110,7 @@ export default function TeamWorkspace() {
       teamId: 2,
       createdAt: "Aug 14, 2005 · 04:20 PM",
       analysis: {
-        severity: "High",
+        severity: "Critical",
         labels: ["Database", "Performance"],
         possibleRootCauses: [
           "Connection pool exhaustion",
@@ -197,7 +203,7 @@ export default function TeamWorkspace() {
       teamId: 2,
       createdAt: "Dec 12, 2005 · 10:40 AM",
       analysis: {
-        severity: "High",
+        severity: "Critical",
         labels: ["Notifications", "Queue"],
         possibleRootCauses: [
           "Message queue backlog",
