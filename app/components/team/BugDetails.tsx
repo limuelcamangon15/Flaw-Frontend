@@ -1,7 +1,14 @@
 "use client";
 
 import { getInitials } from "@/app/utils/utils";
-import { Check, ChevronLeft, Send, UserCog } from "lucide-react";
+import {
+  Check,
+  ChevronDown,
+  ChevronLeft,
+  ChevronUp,
+  Send,
+  UserCog,
+} from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import CommentCard from "./CommentCard";
 import Input from "../ui/input/Input";
@@ -26,10 +33,12 @@ export default function BugDetails({
   assigneeName,
   teamId,
   createdAt,
+  analysis: { severity, labels, possibleRootCauses, suggestedNextSteps },
   showBugDetails,
   setShowBugDetails,
 }: BugDetailsProps) {
   const [newComment, setNewComment] = useState<string>("");
+  const [showAnalysis, setShowAnalysis] = useState<boolean>(false);
 
   useEffect(() => {
     if (!showBugDetails) return;
@@ -156,6 +165,79 @@ export default function BugDetails({
                   <UserCog size={13} />
                   <p>Unassigned</p>
                 </span>
+              </div>
+            )}
+
+            {/* AI Analysis Section */}
+
+            <div
+              onClick={() => setShowAnalysis(!showAnalysis)}
+              className="flex justify-between items-center
+              cursor-pointer mt-2 mb-1 px-3 rounded-lg
+              transition-all duration-300
+              border border-amber-100/0
+              hover:bg-amber-100/5 hover:border-amber-100/15 "
+            >
+              <h1 className="font-sans">AI Analysis</h1>
+              {showAnalysis ? (
+                <ChevronUp size={20} />
+              ) : (
+                <ChevronDown size={20} />
+              )}
+            </div>
+            {showAnalysis && (
+              <div className="font-sans flex flex-col md:flex-row justify-between gap-2 px-3 py-1 w-full bg-amber-300/5 rounded-xl">
+                {/* Labels */}
+                <div>
+                  <h2 className="text-sm text-white/80 mb-1">Labels:</h2>
+                  <ul className="space-y-0.5">
+                    {labels.map((l, index) => (
+                      <li
+                        key={index}
+                        className="flex items-start gap-2 text-xs text-zinc-600 dark:text-zinc-400"
+                      >
+                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-amber-500 shrink-0" />
+                        <span>{l}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Possible Root Causes*/}
+                <div>
+                  <h2 className="text-sm text-white/80 mb-1">
+                    Possible Root Causes:
+                  </h2>
+                  <ul className="space-y-0.5">
+                    {possibleRootCauses.map((p, index) => (
+                      <li
+                        key={index}
+                        className="flex items-start gap-2 text-xs text-zinc-600 dark:text-zinc-400"
+                      >
+                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-amber-500 shrink-0" />
+                        <span>{p}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Suggested Next Steps*/}
+                <div>
+                  <h2 className="text-sm text-white/80 mb-1">
+                    Suggested Next Steps:
+                  </h2>
+                  <ul className="space-y-0.5">
+                    {suggestedNextSteps.map((s, index) => (
+                      <li
+                        key={index}
+                        className="flex items-start gap-2 text-xs text-zinc-600 dark:text-zinc-400"
+                      >
+                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-amber-500 shrink-0" />
+                        <span>{s}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             )}
 

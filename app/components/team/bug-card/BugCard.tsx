@@ -22,6 +22,7 @@ export default function BugCard({
   assigneeName,
   teamId,
   createdAt,
+  analysis: { severity, labels, possibleRootCauses, suggestedNextSteps },
   setShowBugDetails,
   setDisplayedBugDetails,
 }: BugCardProps) {
@@ -39,6 +40,12 @@ export default function BugCard({
           assigneeName,
           teamId,
           createdAt,
+          analysis: {
+            severity,
+            labels,
+            possibleRootCauses,
+            suggestedNextSteps,
+          },
         });
       }}
       className="w-full md:w-[85%] min-h-30 cursor-pointer
