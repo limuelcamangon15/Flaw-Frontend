@@ -4,7 +4,7 @@ interface ButtonProps {
   label: string;
   onClick: () => void;
   icon: React.ReactNode;
-  color: "green" | "red" | "gray" | "blue";
+  color: "green" | "red" | "gray" | "blue" | "white";
   width?: string;
   disabled?: boolean;
 }
@@ -14,6 +14,7 @@ const COLORS = {
   red: "from-red-900 to-red-700",
   gray: "from-gray-700 to-gray-500",
   blue: "from-indigo-900 to-blue-700",
+  white: "from-gray-400/40 to-gray-400/20",
 };
 
 export default function Button({
