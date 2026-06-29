@@ -12,8 +12,8 @@ export default function NotFound() {
         <p className="font-heading text-3xl text-amber-500">Page Not Found</p>
 
         <p className="font-sans text-center px-10 mb-5">
-          The page you're looking for doesn't exist, may have been moved, or the
-          URL might be incorrect.
+          The page you&apos;re looking for doesn&apos;t exist, may have been
+          moved, or the URL might be incorrect.
         </p>
 
         <Button
